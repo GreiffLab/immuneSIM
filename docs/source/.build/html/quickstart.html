@@ -1,0 +1,151 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Quickstart guide &#8212; immuneSIM 0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="quickstart-guide">
+<h1>Quickstart guide<a class="headerlink" href="#quickstart-guide" title="Permalink to this headline">¶</a></h1>
+<p>This guide will show how to use the immuneSIM and generate a simple simulated immune repertoire.</p>
+<div class="section" id="simulation-example">
+<h2>Simulation example<a class="headerlink" href="#simulation-example" title="Permalink to this headline">¶</a></h2>
+<p>The goal of the immuneSIM simulation is to in silico generate human and mosue B- and T-cell repertoires with user-defined properties to provide the user with experimental-like data to benchmark their repertoire analysis studies.
+The simulation algorithm entails an in-silico VDJ recombination process with on-the-go annotation of the generated sequences and if enabled by the user somatic hypermutation (SHM) and motif injection. With a wide range of parameters modifiable by the user, a uniquely diverse set of repertoires can be created. The parameters include: Clone count distribution, Germline Gene Usage, Insertion and Deletion Occurrence, SHM likelihood and Motif Injection.</p>
+</div>
+<div class="section" id="the-workflow-of-the-quickstart-analysis">
+<h2>The workflow of the quickstart analysis<a class="headerlink" href="#the-workflow-of-the-quickstart-analysis" title="Permalink to this headline">¶</a></h2>
+<p>The analysis will consist of the following steps:</p>
+<ol class="arabic simple">
+<li>Simulation of the naive repertoires</li>
+<li>Somatic Hypermutation</li>
+<li>Signal implantation in repertoire</li>
+<li>Output of report comparing repertoire to naive experimental repertoire.</li>
+</ol>
+<p>The repertoires are simulated by in-silico VDJ recombination. Each repertoire will consist of a user-predefined number of fully
+annotated immune receptor sequences .</p>
+<p>The SHM process is based on the previously published AbSIM package and the user is referred to the documentation of the same package.</p>
+<p>Pattern injection is performed on nucleotide level based on gapped-kmer patterns.</p>
+<p>The user can generate a report about the generated repertoire that includes: VDJ usage, positional amino acid frequency and gapped-kmer occurence</p>
+</div>
+<div class="section" id="performing-the-analysis">
+<h2>Performing the analysis<a class="headerlink" href="#performing-the-analysis" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="run-specification">
+<h3>Run specification<a class="headerlink" href="#run-specification" title="Permalink to this headline">¶</a></h3>
+<p>In the quickstart.R, we provide a simple example of a repertoire generation based on standard (experimental) parameters. This gives the user an example simulation run:</p>
+</div>
+<div class="section" id="prerequisites">
+<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h3>
+<p>To be able to run the code, the following prerequisites should be fulfilled:</p>
+<ol class="arabic simple">
+<li>R &gt;= 3.4.0.</li>
+</ol>
+</div>
+<div class="section" id="run-the-analysis">
+<h3>Run the analysis<a class="headerlink" href="#run-the-analysis" title="Permalink to this headline">¶</a></h3>
+<p>To perform the analysis described in the previous sections, do the following:</p>
+<ol class="arabic simple">
+<li>Clone the GitHub repository</li>
+<li>Navigate to the ImmuneSIM folder from the cloned repository</li>
+<li>Execute the following line in the terminal:</li>
+</ol>
+<div class="highlight-RST notranslate"><div class="highlight"><pre><span></span>$ R CMD install immuneSIM.tar.gz
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">immuneSIM</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, CRW.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/quickstart.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

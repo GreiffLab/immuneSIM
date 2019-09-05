@@ -1,0 +1,89 @@
+#################
+Quickstart guide
+#################
+
+This guide will show how to use the immuneSIM and generate a simple simulated immune repertoire.
+
+Simulation example
+=================
+
+The goal of the immuneSIM simulation is to in silico generate human and mosue B- and T-cell repertoires with user-defined properties to provide the user with experimental-like data to benchmark their repertoire analysis studies.
+The simulation algorithm entails an in-silico VDJ recombination process with on-the-go annotation of the generated sequences and if enabled by the user somatic hypermutation (SHM) and motif injection. With a wide range of parameters modifiable by the user, a uniquely diverse set of repertoires can be created. The parameters include: Clone count distribution, Germline Gene Usage, Insertion and Deletion Occurrence, SHM likelihood and Motif Injection.
+
+
+
+The workflow of the quickstart analysis
+=======================================
+
+The analysis will consist of the following steps:
+
+1.  Simulation of the naive repertoires
+2.  Somatic Hypermutation
+3.  Signal implantation in repertoire
+4.  Output of report comparing repertoire to naive experimental repertoire.
+
+The repertoires are simulated by in-silico VDJ recombination. Each repertoire will consist of a user-predefined number of fully
+annotated immune receptor sequences . 
+
+The SHM process is based on the previously published AbSIM package and the user is referred to the documentation of the same package.
+
+Pattern injection is performed on nucleotide level based on gapped-kmer patterns.
+
+The user can generate a report about the generated repertoire that includes: VDJ usage, positional amino acid frequency and gapped-kmer occurence
+
+
+Performing the analysis
+========================
+
+Run specification
+-----------------
+
+In the quickstart.R, we provide a simple example of a repertoire generation based on standard (experimental) parameters. This gives the user an example simulation run:
+
+
+.. code-block:: R
+    library(immuneSIM)
+
+    mm_igh_sim <- immuneSIM(number_of_seqs = 1000,
+                         VDJ_list = list_germline_genes_allele_01,
+                         species = "mm",
+                         receptor = "ig",
+                         chain = "h",
+                         insertions_and_deletion_lengths = insertions_and_deletion_lengths,
+                         user_defined_alpha = 2,
+                         name_repertoire = "mm_igh_sim",
+                         insertions_deletions_corr = TRUE,
+                         length_distribution_rand = length_dist_simulation,
+                         random = FALSE,
+                         shm = FALSE,
+                         vdj_noise = 0,
+                         vdj_dropout = c(V=0,D=0,J=0),
+                         ins_del_dropout = "",
+                         equal_cc = FALSE,
+                         freq_update_time = round(0.5*number_of_sequences_per_repertoire),
+                         min_cdr3_length = 6)
+
+    save(mm_igh_sim,file="mm_igh_sim")
+    
+
+Prerequisites
+-------------
+
+To be able to run the code, the following prerequisites should be fulfilled:
+
+1.  R >= 3.4.0.
+
+
+Run the analysis
+----------------
+
+To perform the analysis described in the previous sections, do the following:
+
+1.  Clone the GitHub repository
+2.  Navigate to the ImmuneSIM folder from the cloned repository
+3.  Execute the following line in the terminal:
+
+.. code-block:: RST
+
+    $ R CMD install immuneSIM.tar.gz
+

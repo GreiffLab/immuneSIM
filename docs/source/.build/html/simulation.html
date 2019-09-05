@@ -1,0 +1,172 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Simulation model &#8212; immuneSIM 0.1 documentation</title>
+    <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/language_data.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="simulation-model">
+<h1>Simulation model<a class="headerlink" href="#simulation-model" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<p>To enable a simulation in which the prediction of the immune status can be performed for synthetic data, ImmuneML
+introduces the simulation model.</p>
+<p>Synthetic data can be defined in different ways:</p>
+<ul class="simple">
+<li>generating synthetic sequences so that some of them are specific to a user-defined disease,</li>
+<li>generating synthetic sequences so that some of them are specific to a user-defined disease and
+grouping them in repertoires and</li>
+<li>extracting publicly available sequences and changing them so that they are specific to a user-defined disease,
+grouping them in repertoires.</li>
+</ul>
+<p>Changing the receptor sequences so that they are disease-specific is performed in the following way: a disease
+is represented by a <em>signal</em> and that signal is implanted in a sequence. A signal, in order to accommodate variety of
+paratopes and reflect biological complexity, can consist of multiple motifs. A motif is a probabilistically defined
+sequence of amino acids or nucleotides. According to a user-determined strategy, a concrete instance of a motif
+(an exact sequence, such as <code class="docutils literal notranslate"><span class="pre">TYQRTRALV</span></code> for influenza <a class="footnote-reference" href="#id2" id="id1">[1]</a>) is created and implanted into the immune receptor sequence.</p>
+<div class="section" id="signal">
+<h2>Signal<a class="headerlink" href="#signal" title="Permalink to this headline">¶</a></h2>
+<p>The <strong>Signal</strong> class corresponds to a disease. An object of the Signal class consists of:</p>
+<ul class="simple">
+<li>a unique identifier,</li>
+<li>a list of motifs,</li>
+<li>a strategy for implanting</li>
+</ul>
+</div>
+<div class="section" id="motif">
+<h2>Motif<a class="headerlink" href="#motif" title="Permalink to this headline">¶</a></h2>
+<p>The <strong>Motif</strong> class includes a seed and defines a way of creating a concrete sequence (a motif instance) from the seed.
+It consists of:</p>
+<ul class="simple">
+<li>a unique identifier,</li>
+<li>seed,</li>
+<li>position weights,</li>
+<li>alphabet weights,</li>
+<li>a strategy for creating instances of the motif.</li>
+</ul>
+<p><em>Seed</em> is a starting point for creating a sequence which will be implanted into an immune receptor sequence. It is a
+sequence of amino acid or nucleotide one letter codes, such as <code class="docutils literal notranslate"><span class="pre">CAS</span></code> or <code class="docutils literal notranslate"><span class="pre">ACT</span></code>, respectively. Since the epitopes can
+have a gap within the sequence, the position of the gap can also be marked in the seed with <code class="docutils literal notranslate"><span class="pre">/</span></code> character. For seed
+<code class="docutils literal notranslate"><span class="pre">C/AS</span></code>, the gap is located after <code class="docutils literal notranslate"><span class="pre">C</span></code> and before <code class="docutils literal notranslate"><span class="pre">AS</span></code>.</p>
+<p>Position weights are probabilities that a position in the seed will be changed when creating a specific instance of the
+motif. If a seed is <code class="docutils literal notranslate"><span class="pre">CAS</span></code>, then position weight 1 for the first position means that when creating a motif instance, the
+first letter (<code class="docutils literal notranslate"><span class="pre">C</span></code>) will be changed if changes from the seed are allowed.</p>
+<p>Alphabet weights are probabilities that a given letter (either an amino acid or a nucleotide) will be chosen to replace
+the letter in the seed sequence. For amino acid sequences, alphabet consists of 20 letters corresponding to each amino acid
+one letter code. If weight for <code class="docutils literal notranslate"><span class="pre">A</span></code> is specified to be 1, then when choosing a letter to change one of the letters from
+the seed, letter <code class="docutils literal notranslate"><span class="pre">A</span></code> will always be chosen. If alphabet weights are not specified, then all letters have equal probability
+of being chosen for replacement.</p>
+</div>
+<div class="section" id="motif-instance">
+<h2>Motif instance<a class="headerlink" href="#motif-instance" title="Permalink to this headline">¶</a></h2>
+<p>The <strong>MotifInstance</strong> class encapsulates a single instance of a motif and ensures it has an appropriate structure. It
+consists of:</p>
+<ul class="simple">
+<li>an instance of the motif and</li>
+<li>a gap.</li>
+</ul>
+<p>For example, if <code class="docutils literal notranslate"><span class="pre">C/AS</span></code> is the motif seed where <code class="docutils literal notranslate"><span class="pre">/</span></code> denotes the gap location, an instance of the motif could be <code class="docutils literal notranslate"><span class="pre">C/AS</span></code>
+and the gap size is given by the gap parameter (e.g. 2). In this case, the motif instance when implanted into sequence
+<code class="docutils literal notranslate"><span class="pre">QQRTVFA</span></code> would be <code class="docutils literal notranslate"><span class="pre">QCRTASA</span></code>.</p>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Allele-specific motifs revealed by sequencing of self-peptides eluted from MHC molecules, Falk et al. 1991, Nature, <a class="reference external" href="https://doi.org/10.1038/351290a0">https://doi.org/10.1038/351290a0</a></td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">immuneSIM</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;2019, CRW.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 1.8.5</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="_sources/simulation.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>
