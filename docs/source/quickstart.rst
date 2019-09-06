@@ -10,12 +10,12 @@ Overview
 ========
 
 The goal of the immuneSIM simulation is to in silico generate human and mouse B- and T-cell repertoires with user-defined properties to provide the user with custom native or aberrant immune receptor sequence repertoires to benchmark their repertoire analysis tools.
-The simulation algorithm implements an in-silico VDJ recombination process with on-the-go annotation of the generated sequences and if enabled by the user somatic hypermutation (SHM) and motif implantation. With a wide range of user-modifiable parameters, a uniquely diverse set of repertoires can be created. The parameters include: Clone count distribution, Germline Gene Usage, Insertion and Deletion Occurrence, SHM likelihood and Motif Implantation.
+The simulation algorithm implements an in silico VDJ recombination process with on-the-go annotation of the generated sequences and if enabled by the user somatic hypermutation (SHM) and motif implantation. With a wide range of user-modifiable parameters, a uniquely diverse set of repertoires can be created. The parameters include: Clone count distribution, Germline Gene Usage, Insertion and Deletion Occurrence, SHM likelihood and Motif Implantation.
 
 
 .. figure:: /images/immuneSIM_fig1A.png 
 
-   The ImmuneSIM in-silico VDJ recombination is based on our understanding of the VDJ recombination process and includes frequency-based selection of a V, D and J genes and
+   The ImmuneSIM in silico VDJ recombination is based on our understanding of the VDJ recombination process and includes frequency-based selection of a V, D and J genes and
    insertions and deletion events in the VD and DJ junctions.
 
 
@@ -31,16 +31,20 @@ To be able to run the code, the following prerequisites are:
 Installing immuneSIM
 --------------------
 
-The package can be installed via GitHub:
+The package can be installed in R (via GitHub):
 
-1.  Clone the GitHub repository: ``git clone https://github.com/GreiffLab/immuneSIM.git``
-2.  Navigate to the immuneSIM folder from the cloned repository
-3.  Check if all the prerequisites are fulfilled.
-4.  Execute the following line in the terminal:
+1.  Check if all the prerequisites are fulfilled/installed.
+2.  Execute the following lines in R:
 
 .. code-block:: RST
 
-    $ R CMD install immuneSIM_0.8.6.tar.gz
+    #install the devtools package
+    install.packages("devtools")
+    
+    #load devtools and install immuneSIM from github 
+    library(devtools)
+    install_github("GreiffLab/immuneSIM")
+    
 
 
 Workflow of the quickstart simulation
