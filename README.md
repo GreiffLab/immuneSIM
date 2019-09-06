@@ -10,6 +10,9 @@ Documentation: https://immuneSIM.readthedocs.io
 
 Publication on biorXiv: tba
 
+![alt text](https://github.com/GreiffLab/immuneSIM/blob/master/docs/source/images/immuneSIM_fig1A.png)
+
+
 
 Prerequisites
 -------------
