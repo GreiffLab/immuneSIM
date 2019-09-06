@@ -8,7 +8,7 @@ The simulation algorithm implements an in silico VDJ recombination process with 
 
 Documentation: https://immuneSIM.readthedocs.io
 
-Publication at biorXiv: tba
+Publication on biorXiv: tba
 
 
 Prerequisites
@@ -25,10 +25,8 @@ Installing immuneSIM
 
 The package can be installed via GitHub:
 
-1.  Check if all the prerequisites are fulfilled.
+1.  Check if all the prerequisites are fulfilled/installed.
 2.  Execute the following lines in R:
-
-.. code-block:: RST
 
     #install the devtools package
     install.packages("devtools")
@@ -44,7 +42,7 @@ Workflow of the quickstart simulation
 
 The quickstart simulation using 'immuneSIM' generates a repertoire of a chosen size for a given species and receptor combination. It does not include somatic hypermutation and motif implantation.
 
-The repertoires are simulated by :ref:`insilico`. Each repertoire will consist of a user-predefined number of fully
+The repertoires are simulated in silico. Each repertoire will consist of a user-predefined number of fully
 annotated immune receptor sequences. 
 
 The user can generate pdfs summarizing the major features of the generated repertoire that includes: VDJ usage, positional amino acid frequency and gapped-k-mer occurrence.
@@ -54,9 +52,6 @@ Performing the analysis
 -----------------------
 
 In the quickstart.R, we provide a simple example of murine B-cell repertoire generation based on standard (experimental) parameters:
-
-
-.. code-block:: r
 
     library(immuneSIM)
 
