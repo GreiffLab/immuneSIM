@@ -28,13 +28,15 @@ The package can be installed via GitHub:
 1.  Check if all the prerequisites are fulfilled/installed.
 2.  Execute the following lines in R:
 
+```r
+
     #install the devtools package
     install.packages("devtools")
     
     #load devtools and install immuneSIM from github 
     library(devtools)
     install_github("GreiffLab/immuneSIM")
-    
+```    
 
 
 Workflow of the quickstart simulation
@@ -53,6 +55,7 @@ Performing the analysis
 
 In the quickstart.R, we provide a simple example of murine B-cell repertoire generation based on standard (experimental) parameters:
 
+```r
     library(immuneSIM)
 
     sim_repertoire <- immuneSIM(
@@ -64,3 +67,4 @@ In the quickstart.R, we provide a simple example of murine B-cell repertoire gen
     save(sim_repertoire,file="sim_repertoire")
 
     plot_report_repertoire(sim_repertoire)
+```
