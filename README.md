@@ -1,0 +1,67 @@
+# immuneSIM
+
+Overview
+========
+
+The goal of the immuneSIM simulation is to in silico generate human and mouse B- and T-cell repertoires with user-defined properties to provide the user with custom native or aberrant immune receptor sequence repertoires to benchmark their repertoire analysis tools.
+The simulation algorithm implements an in-silico VDJ recombination process with on-the-go annotation of the generated sequences and if enabled by the user somatic hypermutation (SHM) and motif implantation. With a wide range of user-modifiable parameters, a uniquely diverse set of repertoires can be created. The parameters include: Clone count distribution, Germline Gene Usage, Insertion and Deletion Occurrence, SHM likelihood and Motif Implantation.
+
+Documentation: https://immuneSIM.readthedocs.io
+Paper at biorXiv: tba
+
+
+Prerequisites
+-------------
+
+To be able to run the code, the following prerequisites are:
+
+1.  R >= 3.4.0.
+2.  Imports: poweRlaw, stringdist, Biostrings, igraph, stringr, data.table, plyr, reshape2, ggplot2, grid, ggthemes, RColorBrewer, Metrics, repmis
+
+
+Installing immuneSIM
+--------------------
+
+The package can be installed via GitHub:
+
+1.  Clone the GitHub repository: ``git clone https://github.com/GreiffLab/immuneSIM.git``
+2.  Navigate to the immuneSIM folder from the cloned repository
+3.  Check if all the prerequisites are fulfilled.
+4.  Execute the following line in the terminal:
+
+.. code-block:: RST
+
+    $ R CMD install immuneSIM_0.8.6.tar.gz
+    
+
+
+Workflow of the quickstart simulation
+=========================================
+
+The quickstart simulation using 'immuneSIM' generates a repertoire of a chosen size for a given species and receptor combination. It does not include somatic hypermutation and motif implantation.
+
+The repertoires are simulated by :ref:`insilico`. Each repertoire will consist of a user-predefined number of fully
+annotated immune receptor sequences. 
+
+The user can generate pdfs summarizing the major features of the generated repertoire that includes: VDJ usage, positional amino acid frequency and gapped-k-mer occurrence.
+
+
+Performing the analysis
+-----------------------
+
+In the quickstart.R, we provide a simple example of murine B-cell repertoire generation based on standard (experimental) parameters:
+
+
+.. code-block:: r
+
+    library(immuneSIM)
+
+    sim_repertoire <- immuneSIM(
+            number_of_seqs = 1000,
+            species = "mm",
+            receptor = "ig",
+            chain = "h")
+
+    save(sim_repertoire,file="sim_repertoire")
+
+    plot_report_repertoire(sim_repertoire)
