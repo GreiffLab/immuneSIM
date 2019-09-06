@@ -33,14 +33,14 @@ Installing immuneSIM
 
 The package can be installed via GitHub:
 
-1.  Clone the GitHub repository (https://github.com/GreiffLab/immuneSIM.git)
-2.  Navigate to the ImmuneSIM folder from the cloned repository
+1.  Clone the GitHub repository: ``git clone https://github.com/GreiffLab/immuneSIM.git``
+2.  Navigate to the immuneSIM folder from the cloned repository
 3.  Check if all the prerequisites are fulfilled.
-4.  Execute the following line in the terminal (Note: This will take a couple of minutes):
+4.  Execute the following line in the terminal:
 
 .. code-block:: RST
 
-    $ R CMD install immuneSIM_0.8.5.tar.gz
+    $ R CMD install immuneSIM_0.8.6.tar.gz
 
 
 Workflow of the quickstart simulation
