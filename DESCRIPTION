@@ -1,0 +1,23 @@
+Package: immuneSIM
+Type: Package
+Title: Tunable Multi-Feature Simulation of B- And T-Cell Adaptive Immune Receptor Repertoires
+Version: 0.8.6
+Authors@R: c(
+    person("Cédric R.", "Weber", email = "cedric.weber@bsse.ethz.ch",role = c("aut", "cre")),
+    person("Victor", "Greiff", email = "victor.greiff@medisin.uio.no",role = "aut"))
+Author: Cédric R. Weber [aut, cre], Victor Greiff [aut]
+Maintainer: Cédric R. Weber <cedric.weber@bsse.ethz.ch>
+Description: Simulate full BCR and TCR repertoires using an in-silico recombination process that 
+    includes a wide variety of tunable parameters to introduce noise and biases. Additional post-
+    simulation modification functions allow the user to implant motifs or codon biases as well as 
+    remodeling sequence similarity architecture. The output repertoires contain records of all 
+    relevant repertoire dimensions and can be anaylzed using provided repertoire analysis functions.
+Depends: R (>= 3.4.0)
+Imports: poweRlaw, stringdist, Biostrings, igraph, stringr, data.table, plyr, reshape2, ggplot2,
+    grid, ggthemes, RColorBrewer, Metrics, repmis
+License: GPL-3
+URL: https://immuneSIM.readthedocs.io
+BugReports: https://github.com/GreiffLab/immuneSIM/issues
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1

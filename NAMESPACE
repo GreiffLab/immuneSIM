@@ -1,0 +1,23 @@
+exportPattern("^[[:alpha:]]+")
+
+exportPattern("^[^\\.]")
+
+importFrom("grDevices", "rgb","pdf","dev.off")
+importFrom("stats", "pnorm", "qnorm", "runif")
+importFrom("utils", "read.csv", "write.csv","tail")
+importFrom("stringr", "str_sub","str_split","str_locate_all","str_match")
+importFrom("Biostrings", "translate","DNAStringSet")
+importFrom("poweRlaw", "dpldis")
+importFrom("stringdist", "stringdistmatrix")
+importFrom("igraph", "graph_from_adjacency_matrix","hub_score")
+importFrom("data.table", "rbindlist","setDF")
+importFrom("reshape2", "melt")
+importFrom("ggplot2", "ggplot","geom_bar","geom_text","geom_point","geom_density_2d","geom_abline","geom_hline","aes","position_dodge","theme_bw","theme","labs","scale_fill_manual","element_text","element_blank","element_rect","rel","scale_x_continuous","scale_y_continuous","scale_x_discrete")
+importFrom("grid", "pushViewport","viewport","grid.layout","unit")
+importFrom("ggthemes", "theme_foundation")
+importFrom("RColorBrewer", "brewer.pal")
+importFrom("Metrics", "mse")
+importFrom("plyr", "join")
+importFrom("repmis", "source_data")
+
+
