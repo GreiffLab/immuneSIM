@@ -70,8 +70,5 @@ In the quickstart.R, we provide a simple example of murine B-cell repertoire gen
     save(sim_repertoire,file="sim_repertoire")
 
     plot_report_repertoire(sim_repertoire)
-<<<<<<< HEAD
+
 ```
-=======
-```
->>>>>>> 4e88c2f6271a4a96cfe37ee2ef66e418642f8de6
