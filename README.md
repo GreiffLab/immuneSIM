@@ -8,7 +8,7 @@ The simulation algorithm implements an in silico VDJ recombination process with 
 
 Documentation: https://immuneSIM.readthedocs.io
 
-Publication on biorXiv: tba
+Publication on biorXiv: https://www.biorxiv.org/content/10.1101/759795v2
 
 ![alt text](https://github.com/GreiffLab/immuneSIM/blob/master/docs/source/images/immuneSIM_fig1A.png)
 
