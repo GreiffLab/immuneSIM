@@ -42,10 +42,8 @@ Installation via GitHub:
     install_github("GreiffLab/immuneSIM")
 ```    
 
-Installation via CRAN:
+Installation via CRAN (Note: Bioconductor packages such as Biostrings might have to be installed separately):
 1. Execute the following line in R.
-
-(Note: Bioconductor packages such as Biostrings might have to be installed separately)
 
 ```r
 
