@@ -26,8 +26,9 @@ To be able to run the code, the following prerequisites are:
 Installing immuneSIM
 --------------------
 
-The package can be installed via GitHub:
+The package can be installed via GitHub or CRAN.
 
+Installation via GitHub:
 1.  Check if all the prerequisites are fulfilled/installed.
 2.  Execute the following lines in R:
 
@@ -41,6 +42,16 @@ The package can be installed via GitHub:
     install_github("GreiffLab/immuneSIM")
 ```    
 
+Installation via CRAN:
+1. Execute the following lines in R 
+(Note: Bioconductor packages such as Biostrings might have to be installed separately)
+
+```r
+
+    #install the immuneSIM package
+    install.packages("immuneSIM")
+
+```    
 
 Workflow of the quickstart simulation
 =========================================
