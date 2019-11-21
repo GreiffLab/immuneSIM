@@ -43,7 +43,8 @@ Installation via GitHub:
 ```    
 
 Installation via CRAN:
-1. Execute the following line in R 
+1. Execute the following line in R.
+
 (Note: Bioconductor packages such as Biostrings might have to be installed separately)
 
 ```r
