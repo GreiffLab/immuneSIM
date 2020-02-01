@@ -6,21 +6,27 @@
 #' @param top_x Determines what percentage of hub sequences get excluded
 #'
 #' (Default: 0.005, i.e. Top 0.5 percent)
-#' @param report If TRUE saves a csv file containing the excluded sequences.
+#' @param report The user can choose to output a report csv file containing the excluded
+#' sequences. (Default: FALSE)
+#' @param output_dir If user specifies and output directory a csv file containing
+#' the excluded sequences is saved at that path, otherwise it will be saved in tempdir().
+#' @param verbose Determines whether messages on plot locations are output to user. (Default: TRUE)
 #' @return Repertoire reduced by hub sequence (new network architecture)
 #' @examples
-#' \dontrun{
-#' repertoire <- immuneSIM(number_of_seqs = 50,species = "mm",receptor = "ig", chain = "h")
-#' hub_seqs_exclusion(repertoire, top_x = 0.005,report = FALSE)
-#' }
+#' repertoire <- list_example_repertoires[["example_repertoire_A"]]
+#' rep_excluded_hubs <- hub_seqs_exclusion(repertoire, top_x = 0.005, output_dir = "")
 
 
-hub_seqs_exclusion<-function(repertoire, top_x = 0.005, report = FALSE){
+hub_seqs_exclusion<-function(repertoire, top_x = 0.005, report = FALSE, output_dir = "",verbose = TRUE){
+
+  #set output folder
+  if(output_dir == ""){
+    wd <- tempdir()
+  }else{
+    wd <- output_dir
+  }
+
   ###construct similarity network and mutate hub sequences.
-  #only based on AA. --> goal: tilt architecture.
-  #library(stringdist,quietly=TRUE,warn.conflicts = FALSE)
-  #library(igraph,quietly=TRUE,warn.conflicts = FALSE)
-
   #prep sequences for graph / get unique sequences
   CDR3s<-unique(as.character(repertoire$junction_aa))
 
@@ -51,9 +57,13 @@ hub_seqs_exclusion<-function(repertoire, top_x = 0.005, report = FALSE){
   repertoire_hubs_excluded<-repertoire[repertoire$junction_aa %in% kept_CDR3s,]
 
   #if report is chosen extract excluded sequences and write as .csv file.
-  if(report==TRUE){
+  if(report == TRUE){
     report_excluded<-repertoire[repertoire$junction_aa %in% seqs_to_be_excluded,]
-    write.csv(report_excluded,file=paste(repertoire$name_repertoire[1],'_hub_seqs_excluded.csv',sep=""))
+    write.csv(report_excluded,file=file.path(wd, paste(repertoire$name_repertoire[1],'_hub_seqs_excluded.csv',sep="")))
+
+    if(verbose==TRUE){
+      cat("csv file containing excluded sequences has been saved to: ",wd,"\n")
+    }
   }
 
   return(repertoire_hubs_excluded)

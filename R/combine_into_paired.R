@@ -4,11 +4,9 @@
 #' @param repertoire_light A repertoire containing light/alpha chain data
 #' @return immuneSIM repertoire containing heavy/beta and light/alpha chain data.
 #' @examples
-#' \dontrun{
-#' repertoire_heavy <- immuneSIM(number_of_seqs = 10,species = "mm",receptor = "ig", chain = "h")
-#' repertoire_light <- immuneSIM(number_of_seqs = 10,species = "mm",receptor = "ig", chain = "kl")
-#' combine_into_paired(repertoire_heavy,repertoire_light)
-#' }
+#' repertoire_heavy <- immuneSIM(number_of_seqs = 5,species = "mm",receptor = "ig", chain = "h")
+#' repertoire_light <- immuneSIM(number_of_seqs = 5,species = "mm",receptor = "ig", chain = "kl")
+#' paired_repertoire <- combine_into_paired(repertoire_heavy,repertoire_light)
 
 combine_into_paired <- function(repertoire_heavy,repertoire_light){
     repertoire_light <- repertoire_light[,c(1:5,7:10,13,14,16)]

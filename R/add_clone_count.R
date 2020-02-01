@@ -1,6 +1,6 @@
 # Add clone count.
 #
-# @param simulated_repertoire An annotated AIRR compliant immuneSIM repertoire.
+# @param simulated_repertoire An annotated AIRR (Adaptive Immune Receptor Repertoire) compliant immuneSIM repertoire.
 # @param user_defined_alpha Parameter that for the simulation of powerlaw distribution (recommended range 2-5)
 # @param equal_cc overrides other parameters if TRUE and clone count will be equal for all sequences
 # @return immuneSIM repertoire including clone count and frequency column.

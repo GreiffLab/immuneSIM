@@ -1,23 +1,30 @@
 
-.immuneSim_standard<-function(number_of_seqs,vdj_list,species="mm",receptor="ig",chain="h",insertions_and_deletion_lengths,user_defined_alpha=2,name_repertoire,freq_update_time=0.5*number_of_seqs,max_cdr3_length=100,min_cdr3_length=6,shm.mode="none",shm.prob=15/350,print_progress=TRUE){
+.immuneSim_standard<-function(number_of_seqs,vdj_list,species="mm",receptor="ig",chain="h",insertions_and_deletion_lengths,user_defined_alpha=2,name_repertoire,freq_update_time=0.5*number_of_seqs,max_cdr3_length=100,min_cdr3_length=6,shm.mode="none",shm.prob=15/350,verbose=TRUE){
   #based on input VDJ list, insertion and deletion frequencies and clonecounts a repertoire
   #of size number_of_seqs is simulated
   #name repertoire: additional column that identifies repertoire
 
   #prepare insertion/deletions df by creating mod1,2,3 subsets for easier access.
-  cat("initializing sim")
+  if(verbose==TRUE){
+    cat("initializing sim")
+  }
   insertion_pairs_mod1 <- insertions_and_deletion_lengths[(nchar(insertions_and_deletion_lengths$n1)+nchar(insertions_and_deletion_lengths$n2))%%3==1,]
-  cat(".")
+  if(verbose==TRUE){
+    cat(".")
+  }
   insertion_pairs_mod2 <- insertions_and_deletion_lengths[(nchar(insertions_and_deletion_lengths$n1)+nchar(insertions_and_deletion_lengths$n2))%%3==2,]
-  cat(".")
+  if(verbose==TRUE){
+    cat(".")
+  }
   insertion_pairs_mod3 <- insertions_and_deletion_lengths[(nchar(insertions_and_deletion_lengths$n1)+nchar(insertions_and_deletion_lengths$n2))%%3==0,]
-  cat(".\n")
-
+  if(verbose==TRUE){
+    cat("\n")
+  }
   #set number of sequences to be simulated
   number_of_simulated_seqs<-number_of_seqs
 
   #set threshold for sim progress output. also allow toggle off of printouts
-  if(print_progress==TRUE){
+  if(verbose==TRUE){
     if(number_of_simulated_seqs<=100){
       cat_threshold <- 10
     }else if(number_of_simulated_seqs<=1000){
@@ -71,7 +78,7 @@
   while(count>0){
     #in case we reach a freq update point: update frequencies to improve sampling
     if((count!=number_of_seqs) & ((number_of_seqs-count)%%freq_update_time==0)){
-      #cat('updating\n')
+
       VDJ_used <- vdj_used
       vdj_list<-.update_vdj_freqs(vdj_list=vdj_list_ref,VDJ_used=vdj_used)
     }
@@ -328,7 +335,9 @@
             #update user with simulation progress depending (depends on cat thresholds based on number of sequences )
             if(cat_threshold!=Inf){
               if((number_of_seqs-count+1)%%cat_threshold==0){
-                cat("simulated sequences:", (number_of_seqs-count+1),"\n")
+                if(verbose==TRUE){
+                  cat("simulated sequences:", (number_of_seqs-count+1),"\n")
+                }
               }
             }
             #save with all essential info

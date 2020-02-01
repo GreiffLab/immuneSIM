@@ -24,7 +24,7 @@
   #for each gap size evaluate occurrences
   for(j in 1:length(m)){
     k_dist<-m[[j]]
-    cat("k: ",k_length,"\t", "m: ", k_dist,"\n")#
+    #cat("k: ",k_length,"\t", "m: ", k_dist,"\n")#
 
     #choose relevant dictionary and kmer pairs (all-pairs_of_combs)
     nt_pair_dict_gen<-dictionary[[as.character(opt_k)]]

@@ -2,7 +2,7 @@
   #makes a dictionary for kmer combo counts depending on kmer sizes used in analysis
   #only needs to be run once.
 
-  cat('Preparing nt dictionary ...\n')
+  #cat('Preparing nt dictionary ...\n')
 
   #first do nucleotidedictionary
   #set k to make dictionary
@@ -32,8 +32,8 @@
   #give dictionaries created names that make them identifiable
   names(dictionaries_nt)<-as.character(k_nt)  #c("1","2","3","4")
 
-  cat('nt dictionary Done \n')
-  cat('Preparing aa dictionary ...\n')
+  #cat('nt dictionary Done \n')
+  #cat('Preparing aa dictionary ...\n')
 
   #do the same for amino acids
   k_prep_aa<-k_aa #c(1,2)
@@ -68,7 +68,7 @@
   dictionary_counts[[4]] <- gap_size_aa
 
   names(dictionary_counts)<-c("nt","AA","gap_nt","gap_aa")
-  cat(' Done \n')
+  #cat(' Done \n')
 
   return(dictionary_counts)
 }

@@ -7,10 +7,10 @@
 #' @param skip_probability Probability with which a sequence gets skipped in the codon replacement process between 0,1
 #' @return immuneSIM repertoire with replaced codons
 #' @examples
-#' \dontrun{
-#' repertoire <- immuneSIM(number_of_seqs = 10,species = "mm",receptor = "ig", chain = "h")
-#' codon_replacement(repertoire, "both", list(tat = "tac", agt = "agc", gtt = "gtg"), 0)
-#' }
+#' repertoire <- list_example_repertoires[["example_repertoire_A"]]
+#' rep_codon_repl <- codon_replacement(repertoire, "both",
+#' list(tat = "tac", agt = "agc", gtt = "gtg"), 0)
+
 
 codon_replacement<-function(repertoire,mode="both",codon_replacement_list,skip_probability=0){
   ###replace codons either with or without change in AA

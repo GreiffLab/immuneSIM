@@ -25,9 +25,8 @@
     }
   }else{
     #if for some reasons two sequences are of unequal length notify user and record SHM as empty string
-    cat("unequal seq lengths")
+    base::warning("unequal seq lengths")
     shm_record<-""
-    return(TRUE)
   }
 
   return(shm_record)

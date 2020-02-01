@@ -1,7 +1,7 @@
 #' Loads full insertion/deletion data from GitHub
 #' @return Dataframe containing insertions and deletions (11363603 rows, 6 columns)
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' full_insertions_and_deletion_df <- load_insdel_data()
 #' }
 

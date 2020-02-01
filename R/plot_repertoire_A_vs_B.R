@@ -5,32 +5,30 @@
 #' @param repertoire_B An annotated AIRR-compliant immuneSIM repertoire.
 #' @param names_repertoires A vector containing two strings denoting the names of the repertoires / repertoire descriptions.
 #' @param length_aa_plot Defines sequence length for which the amino acid frequency plot will be made.
-#' @param output_folder String containing full path of desired output folder. If empty figures will be output to current path.
+#' @param output_dir String containing full path of desired output folder. If empty, figures will be output in tempdir().
+#' @param verbose Determines whether messages on plot locations are output to user. (Default: TRUE)
 #' @return TRUE (plots saved as pdfs into subfolder 'figures')
 #' @examples
-#' \dontrun{
-#' repertoire_A <- immuneSIM(number_of_seqs = 200,species = "mm",receptor = "ig", chain = "h")
-#' repertoire_B <- immuneSIM(number_of_seqs = 200,species = "mm",receptor = "ig", chain = "h")
+#' repertoire_A <- list_example_repertoires[["example_repertoire_A"]]
+#' repertoire_B <- list_example_repertoires[["example_repertoire_B"]]
 #' plot_repertoire_A_vs_B(
 #' repertoire_A,
 #' repertoire_B,
 #' c("Sim_repertoire_1","Sim_repertoire_2"),
 #' length_aa_plot = 14,
-#' output_folder="")
-#' }
+#' output_dir="")
 
 
-plot_repertoire_A_vs_B<-function(repertoire_A,repertoire_B,names_repertoires=c("Repertoire_A","Repertoire_B"),length_aa_plot=14,output_folder=""){
+plot_repertoire_A_vs_B<-function(repertoire_A,repertoire_B,names_repertoires=c("Repertoire_A","Repertoire_B"),length_aa_plot=14,output_dir="", verbose=TRUE){
 
   #set colorpalette
   my_spectral <- grDevices::colorRampPalette(RColorBrewer::brewer.pal(8,'Spectral'))(14)
 
-  #set output
-  if(output_folder == ""){
-    folder <- getwd()
+  #set output folder
+  if(output_dir == ""){
+    wd <- tempdir()
   }else{
-    setwd(output_folder)
-    folder <- ""
+    wd <- output_dir
   }
 
   #set names
@@ -77,7 +75,7 @@ plot_repertoire_A_vs_B<-function(repertoire_A,repertoire_B,names_repertoires=c("
                                                                       repertoire_name=name_b,freqs_input=input_aa_freqs,reference_name=name_b)
 
     #output plot
-    grDevices::pdf(paste("aa_freq_",name,".pdf",sep=""), family="Helvetica", width = 20,  height = 10)
+    grDevices::pdf(file.path(wd, paste("aa_freq_",name,".pdf",sep="")), family="Helvetica", width = 20,  height = 10)
     grid::pushViewport(grid::viewport(layout = grid::grid.layout(1,2, heights = grid::unit(c(0.5, 4),"null")))) # 3 rows, 1 columns
     vplayout<-function(x,y) grid::viewport(layout.pos.row=x,layout.pos.col=y)
     base::print(plots_aa_freq_list_imgt[[1]], vp=vplayout(1,1))   # plot for row 1, column 1
@@ -85,7 +83,7 @@ plot_repertoire_A_vs_B<-function(repertoire_A,repertoire_B,names_repertoires=c("
     grDevices::dev.off()
   }else{
     #if there are not enough sequences to evaluate notify user
-    cat("\nNot enough sequences of length", length_aa_plot ,"to make amino acid frequency plot\n")
+    base::warning("\nNot enough sequences of length ", length_aa_plot ," to make amino acid frequency plot\n")
   }
 
 
@@ -147,7 +145,7 @@ plot_repertoire_A_vs_B<-function(repertoire_A,repertoire_B,names_repertoires=c("
     ggplot2::labs(x = name_a, y = name_b, fill = "") +
     .theme.akbar()
 
-  grDevices::pdf(paste("vdj_recovery_",name,".pdf",sep=""), family="Helvetica", width = 10,  height = 5)
+  grDevices::pdf(file.path(wd, paste("vdj_recovery_",name,".pdf",sep="")), family="Helvetica", width = 10,  height = 5)
   grid::pushViewport(grid::viewport(layout = grid::grid.layout(1,1, heights = grid::unit(c(0.5, 4),"null")))) # 3 rows, 1 columns
   vplayout<-function(x,y) grid::viewport(layout.pos.row=x,layout.pos.col=y)
   base::print(vdj_occurrence_plot, vp=vplayout(1,1))   # plot for row 1, column 1
@@ -183,7 +181,7 @@ plot_repertoire_A_vs_B<-function(repertoire_A,repertoire_B,names_repertoires=c("
     ggplot2::scale_fill_manual(values = c("black","red"))+
     .theme.akbar()
 
-  grDevices::pdf(paste("length_distribution_",name,".pdf",sep=""), family="Helvetica", width = 8,  height = 6)
+  grDevices::pdf(file.path(wd, paste("length_distribution_",name,".pdf",sep="")), family="Helvetica", width = 8,  height = 6)
   grid::pushViewport(grid::viewport(layout = grid::grid.layout(1,1, heights = grid::unit(c(0.5, 4),"null")))) # 3 rows, 1 columns
   vplayout<-function(x,y) grid::viewport(layout.pos.row=x,layout.pos.col=y)
   base::print(df_seq_length, vp=vplayout(1,1))   # plot for row 1, column 1
@@ -257,13 +255,15 @@ plot_repertoire_A_vs_B<-function(repertoire_A,repertoire_B,names_repertoires=c("
     ggplot2::geom_text(ggplot2::aes(pos_text_x, 0.7*pos_text_y, label=r_value_spearman))+
     .theme.akbar()
 
-  grDevices::pdf(paste("kmer_plot_",name,".pdf",sep=""), family="Helvetica", width = 8,  height = 7)
+  grDevices::pdf(file.path(wd, paste("kmer_plot_",name,".pdf",sep="")), family="Helvetica", width = 8,  height = 7)
   grid::pushViewport(grid::viewport(layout = grid::grid.layout(1,1, heights = grid::unit(c(0.5, 4),"null")))) # 3 rows, 1 columns
   vplayout<-function(x,y) grid::viewport(layout.pos.row=x,layout.pos.col=y)
   #grid.text("", vp=vplayout(1,1:2))
   base::print(kmer_plot_sim_v_input, vp=vplayout(1,1))   # plot for row 1, column 1
   grDevices::dev.off()
 
-  cat("Plots were saved in PDF format in: ",getwd(),"\n")
+  if(verbose==TRUE){
+    cat("Plots were saved in PDF format in: ",wd,"\n")
+  }
 
 }

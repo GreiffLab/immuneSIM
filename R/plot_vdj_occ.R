@@ -1,8 +1,5 @@
 #plotting helper function for vdj occurrence
-.plot_vdj_occ<-function(curr_repertoire){
-  #library(ggplot2,quietly=TRUE,warn.conflicts = FALSE)
-  #library(ggthemes,quietly=TRUE,warn.conflicts = FALSE)
-  #library(grid,quietly=TRUE,warn.conflicts = FALSE)
+.plot_vdj_occ<-function(curr_repertoire,curr_directory){
 
   list_order_genes<-list()
   #evaluate VDJ occurrence
@@ -57,7 +54,7 @@
 
   name_plot <- paste("vdj_occurrence_",name_rep_vdj,".pdf",sep="")
   #output plots for V,D,J
-  grDevices::pdf(name_plot,  width = 15,  height = 5)
+  grDevices::pdf(file.path(curr_directory, name_plot),  width = 15,  height = 5)
   grid::pushViewport( grid::viewport(layout=grid::grid.layout(1,3, heights = grid::unit(c(0.5, 4),"null")))) # 3 rows, 1 columns
   vplayout<-function(x,y) grid::viewport(layout.pos.row=x,layout.pos.col=y)
   base::print(vdj_occurrence_plot_list[[1]], vp=vplayout(1,1))

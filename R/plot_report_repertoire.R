@@ -2,24 +2,22 @@
 #' @param repertoire An annotated AIRR-compliant immuneSIM repertoire.
 #'
 #' (http://docs.airr-community.org/en/latest/)
-#' @param output_folder String containing full path of desired output folder. If empty figures will be output to current path.
+#' @param output_dir String containing full path of desired output folder. If empty figures will be output in tempdir().
+#' @param verbose Determines whether messages on plot locations are output to user. (Default: TRUE)
 #' @return TRUE (plots saved as pdfs into subfolder 'figures')
 #' @examples
-#' \dontrun{
-#' repertoire <- immuneSIM(number_of_seqs = 10,species = "mm",receptor = "ig", chain = "h")
-#' plot_report_repertoire(repertoire,output_folder="")
-#' }
+#' repertoire <- list_example_repertoires[["example_repertoire_A"]]
+#' plot_report_repertoire(repertoire,output_dir="")
 
 #plotting function
 #plots aafreqs plot for most common length and rough VDJ distribution plots
-plot_report_repertoire<-function(repertoire,output_folder=""){#,vs_reference=FALSE){
+plot_report_repertoire<-function(repertoire,output_dir = "", verbose = TRUE){
 
   #set output folder
-  if(output_folder == ""){
-    folder <- ""
+  if(output_dir == ""){
+    wd <- tempdir()
   }else{
-    setwd(output_folder)
-    folder <- ""
+    wd <- output_dir
   }
 
   #prepare coloring scheme
@@ -56,7 +54,7 @@ plot_report_repertoire<-function(repertoire,output_folder=""){#,vs_reference=FAL
     ggplot2::scale_fill_manual(values = c("black"))+
     .theme.akbar()
 
-  grDevices::pdf(paste(folder,"length_distribution_",name_rep,".pdf",sep=""), family="Helvetica", width = 8,  height = 6)
+  grDevices::pdf(file.path(wd, paste("length_distribution_",name_rep,".pdf",sep="")), family="Helvetica", width = 8,  height = 6)
   grid::pushViewport(grid::viewport(layout = grid::grid.layout(1,1, heights = grid::unit(c(0.5, 4),"null")))) # 3 rows, 1 columns
   vplayout<-function(x,y) grid::viewport(layout.pos.row=x,layout.pos.col=y)
   base::print(df_seq_length, vp=vplayout(1,1))   # plot for row 1, column 1
@@ -75,16 +73,18 @@ plot_report_repertoire<-function(repertoire,output_folder=""){#,vs_reference=FAL
   plots_aa_freq_list_imgt<-.plot_report_repertoire_AA_freq(input_aa_freqs=input_aa_freqs,name_rep=name_rep)
 
   #Plot
-  grDevices::pdf(paste("aa_freq_",name_rep,".pdf",sep=""), family="Helvetica", width = 13,  height = 10)
+  grDevices::pdf(file.path(wd, paste("aa_freq_",name_rep,".pdf",sep="")), family="Helvetica", width = 13,  height = 10)
   grid::pushViewport( grid::viewport(layout = grid::grid.layout(1,1, heights = grid::unit(c(0.5, 4),"null")))) # 3 rows, 1 columns
   vplayout<-function(x,y) grid::viewport(layout.pos.row=x,layout.pos.col=y)
   base::print(plots_aa_freq_list_imgt[[1]], vp=vplayout(1,1))   # plot for row 1, column 1
   grDevices::dev.off()
 
   #plot vdj occurrence
-  .plot_vdj_occ(repertoire)
+  .plot_vdj_occ(curr_repertoire=repertoire,curr_directory=wd)
 
-  cat("Plots saved in PDF format in: ",getwd(),"\n")
+  if(verbose==TRUE){
+    cat("Plots saved in PDF format in: ",wd,"\n")
+  }
 
 }
 

@@ -42,7 +42,7 @@
 #'
 #' https://github.com/GreiffLab/immuneSIM or using the provided
 #' function: load_insdel_data()
-#' @format A data frame with 500000 rows andvariables:
+#' @format A data frame with 500000 rows and variables:
 #' \describe{
 #'   \item{n1}{np1 insertions}
 #'   \item{n2}{np2 insertions}
@@ -121,3 +121,21 @@
 #'    \url{https://doi.org/10.1093/bioinformatics/btx533}
 #' }
 "one_spot_df"
+
+
+
+#' Example repertoires
+#'
+#' A list containing two example repertoires (100 sequences each)
+#' simulated with immuneSIM using default parameters.
+#' These repertoires are used in the examples.
+#'
+#' @format A list with 2 entries:
+#' \describe{
+#'   \item{example_repertoire_A}{Repertoire simulated using standard parameters (A)}
+#'   \item{example_repertoire_A}{Repertoire simulated using standard parameters (B)}
+#' }
+#' @source {
+#'    \url{https://immunesim.readthedocs.io}
+#' }
+"list_example_repertoires"
