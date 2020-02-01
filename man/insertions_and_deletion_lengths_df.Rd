@@ -4,7 +4,7 @@
 \name{insertions_and_deletion_lengths_df}
 \alias{insertions_and_deletion_lengths_df}
 \title{Dataframe containing insertion sequences and deletion lengths}
-\format{A data frame with 500000 rows andvariables:
+\format{A data frame with 500000 rows and variables:
 \describe{
   \item{n1}{np1 insertions}
   \item{n2}{np2 insertions}

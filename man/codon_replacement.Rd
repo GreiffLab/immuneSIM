@@ -25,8 +25,7 @@ immuneSIM repertoire with replaced codons
 Replaces codons with synonymous codons
 }
 \examples{
-\dontrun{
-repertoire <- immuneSIM(number_of_seqs = 10,species = "mm",receptor = "ig", chain = "h")
-codon_replacement(repertoire, "both", list(tat = "tac", agt = "agc", gtt = "gtg"), 0)
-}
+repertoire <- list_example_repertoires[["example_repertoire_A"]]
+rep_codon_repl <- codon_replacement(repertoire, "both",
+list(tat = "tac", agt = "agc", gtt = "gtg"), 0)
 }

@@ -20,8 +20,6 @@ Repertoire with modified sequences containing implanted motifs in CDR3.
 Implant random or predefined motifs into CDR3
 }
 \examples{
-\dontrun{
-sim_repertoire <- immuneSIM(number_of_seqs = 10,species = "mm",receptor = "ig", chain = "h")
-motif_implantation(sim_repertoire,list("n"=2,"k"=3,"freq"=c(0.1,0.1)),0)
-}
+sim_repertoire <- list_example_repertoires[["example_repertoire_A"]]
+sim_rep_motifs <- motif_implantation(sim_repertoire,list("n"=2,"k"=3,"freq"=c(0.1,0.1)),0)
 }

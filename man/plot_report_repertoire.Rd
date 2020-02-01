@@ -4,14 +4,16 @@
 \alias{plot_report_repertoire}
 \title{Plots main repertoire features (length distribution,amino acid frequencies and VDJ usage)}
 \usage{
-plot_report_repertoire(repertoire, output_folder = "")
+plot_report_repertoire(repertoire, output_dir = "", verbose = TRUE)
 }
 \arguments{
 \item{repertoire}{An annotated AIRR-compliant immuneSIM repertoire.
 
 (http://docs.airr-community.org/en/latest/)}
 
-\item{output_folder}{String containing full path of desired output folder. If empty figures will be output to current path.}
+\item{output_dir}{String containing full path of desired output folder. If empty figures will be output in tempdir().}
+
+\item{verbose}{Determines whether messages on plot locations are output to user. (Default: TRUE)}
 }
 \value{
 TRUE (plots saved as pdfs into subfolder 'figures')
@@ -20,8 +22,6 @@ TRUE (plots saved as pdfs into subfolder 'figures')
 Plots main repertoire features (length distribution,amino acid frequencies and VDJ usage)
 }
 \examples{
-\dontrun{
-repertoire <- immuneSIM(number_of_seqs = 10,species = "mm",receptor = "ig", chain = "h")
-plot_report_repertoire(repertoire,output_folder="")
-}
+repertoire <- list_example_repertoires[["example_repertoire_A"]]
+plot_report_repertoire(repertoire,output_dir="")
 }

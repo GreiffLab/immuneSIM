@@ -8,7 +8,7 @@ codon_replacement_reconstruction(codon_replacement_vec)
 }
 \arguments{
 \item{codon_replacement_vec}{An vector containing strings describing codon replacement events as generated
-by codon_replacement() fucntion. The string contains information on every replacement event in the form:
+by codon_replacement() function. The string contains information on every replacement event in the form:
 
 "initial_codon:replacement_codon:number_of_occurrences"
 
@@ -23,8 +23,6 @@ List of dataframes. Each entry contains replacement info including count of occu
 Decodes immuneSIM repertoire codon replacements events.
 }
 \examples{
-\dontrun{
-codon_replacment_example <- c("tat,tac:3|agt,agc:3|gtt,gtg:0", "tat,tac:1|agt,agc:1|gtt,gtg:1")
-codon_replacement_list <- codon_replacment_reconstruction(codon_replacment_example)
-}
+codon_replacement_example <- c("tat,tac:3|agt,agc:3|gtt,gtg:0", "tat,tac:1|agt,agc:1|gtt,gtg:1")
+codon_replacement_list <- codon_replacement_reconstruction(codon_replacement_example)
 }

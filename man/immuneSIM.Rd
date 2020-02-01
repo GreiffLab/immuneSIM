@@ -13,7 +13,7 @@ immuneSIM(number_of_seqs = 1000,
   shm.mode = "none", shm.prob = 15/350, vdj_noise = 0,
   vdj_dropout = c(V = 0, D = 0, J = 0), ins_del_dropout = c(""),
   equal_cc = FALSE, freq_update_time = round(0.5 * number_of_seqs),
-  max_cdr3_length = 100, min_cdr3_length = 6, print_progress = TRUE,
+  max_cdr3_length = 100, min_cdr3_length = 6, verbose = TRUE,
   airr_compliant = TRUE)
 }
 \arguments{
@@ -44,7 +44,7 @@ be introduced here can be found on: (Git-Link)}
 \item{shm.mode}{String defining mode of somatic hypermutation simulation based on AbSim
 (options: 'none', 'data','poisson', 'naive', 'motif', 'wrc'. Default: 'none'). See AbSim documentation.}
 
-\item{shm.prob}{Numeric defining probability of a SHM occurring at each position.}
+\item{shm.prob}{Numeric defining probability of a SHM (somatic hypermutation) occurring at each position.}
 
 \item{vdj_noise}{Numeric between 0,1, setting noise level to be introduced in provided V,D,J germline frequencies. 0 denotes no noise. (Default: 0)}
 
@@ -64,7 +64,7 @@ Default: Update after 50 percent of sequences.}
 
 \item{min_cdr3_length}{Numeric defining minimal length of cdr3. (Default: 6)}
 
-\item{print_progress}{Boolean toggling printing of progress on and off (Default: TRUE)}
+\item{verbose}{Boolean toggling printing of progress on and off (Default: FALSE)}
 
 \item{airr_compliant}{Boolean determining whether output repertoire should be named in an AIRR compliant manner
 (Default: TRUE). (http://docs.airr-community.org/en/latest/)}
@@ -76,12 +76,10 @@ An annotated AIRR-compliant immuneSIM repertoire. (http://docs.airr-community.or
 Simulates an immune repertoire based on user-defined parameters
 }
 \examples{
-\dontrun{
-immuneSIM(number_of_seqs = 10, vdj_list = list_germline_genes_allele_01,
+sim_rep <- immuneSIM(number_of_seqs = 10, vdj_list = list_germline_genes_allele_01,
 species = "mm", receptor = "ig", chain = "h",
 insertions_and_deletion_lengths = insertions_and_deletion_lengths_df,
 user_defined_alpha = 2,name_repertoire = "mm_igh_sim",
 shm.mode = "data",shm.prob=15/350,vdj_noise = 0, vdj_dropout = c(V=0,D=0,J=0),
 ins_del_dropout = "",min_cdr3_length = 6)
-}
 }

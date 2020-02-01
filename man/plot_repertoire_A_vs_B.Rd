@@ -6,7 +6,7 @@
 \usage{
 plot_repertoire_A_vs_B(repertoire_A, repertoire_B,
   names_repertoires = c("Repertoire_A", "Repertoire_B"),
-  length_aa_plot = 14, output_folder = "")
+  length_aa_plot = 14, output_dir = "", verbose = TRUE)
 }
 \arguments{
 \item{repertoire_A}{An annotated AIRR-compliant immuneSIM repertoire.
@@ -19,7 +19,9 @@ plot_repertoire_A_vs_B(repertoire_A, repertoire_B,
 
 \item{length_aa_plot}{Defines sequence length for which the amino acid frequency plot will be made.}
 
-\item{output_folder}{String containing full path of desired output folder. If empty figures will be output to current path.}
+\item{output_dir}{String containing full path of desired output folder. If empty, figures will be output in tempdir().}
+
+\item{verbose}{Determines whether messages on plot locations are output to user. (Default: TRUE)}
 }
 \value{
 TRUE (plots saved as pdfs into subfolder 'figures')
@@ -28,14 +30,12 @@ TRUE (plots saved as pdfs into subfolder 'figures')
 Comparative plots of main repertoire features of two input repertoires (length distribution, amino acid frequency, VDJ usage, kmer occurrence)
 }
 \examples{
-\dontrun{
-repertoire_A <- immuneSIM(number_of_seqs = 200,species = "mm",receptor = "ig", chain = "h")
-repertoire_B <- immuneSIM(number_of_seqs = 200,species = "mm",receptor = "ig", chain = "h")
+repertoire_A <- list_example_repertoires[["example_repertoire_A"]]
+repertoire_B <- list_example_repertoires[["example_repertoire_B"]]
 plot_repertoire_A_vs_B(
 repertoire_A,
 repertoire_B,
 c("Sim_repertoire_1","Sim_repertoire_2"),
 length_aa_plot = 14,
-output_folder="")
-}
+output_dir="")
 }

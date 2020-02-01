@@ -4,7 +4,8 @@
 \alias{hub_seqs_exclusion}
 \title{Deletes top hub sequences from repertoire, changing the network architecture.}
 \usage{
-hub_seqs_exclusion(repertoire, top_x = 0.005, report = FALSE)
+hub_seqs_exclusion(repertoire, top_x = 0.005, report = FALSE,
+  output_dir = "", verbose = TRUE)
 }
 \arguments{
 \item{repertoire}{An annotated AIRR compliant repertoire.
@@ -15,7 +16,13 @@ hub_seqs_exclusion(repertoire, top_x = 0.005, report = FALSE)
 
 (Default: 0.005, i.e. Top 0.5 percent)}
 
-\item{report}{If TRUE saves a csv file containing the excluded sequences.}
+\item{report}{The user can choose to output a report csv file containing the excluded
+sequences. (Default: FALSE)}
+
+\item{output_dir}{If user specifies and output directory a csv file containing
+the excluded sequences is saved at that path, otherwise it will be saved in tempdir().}
+
+\item{verbose}{Determines whether messages on plot locations are output to user. (Default: TRUE)}
 }
 \value{
 Repertoire reduced by hub sequence (new network architecture)
@@ -24,8 +31,6 @@ Repertoire reduced by hub sequence (new network architecture)
 Deletes top hub sequences from repertoire, changing the network architecture.
 }
 \examples{
-\dontrun{
-repertoire <- immuneSIM(number_of_seqs = 50,species = "mm",receptor = "ig", chain = "h")
-hub_seqs_exclusion(repertoire, top_x = 0.005,report = FALSE)
-}
+repertoire <- list_example_repertoires[["example_repertoire_A"]]
+rep_excluded_hubs <- hub_seqs_exclusion(repertoire, top_x = 0.005, output_dir = "")
 }

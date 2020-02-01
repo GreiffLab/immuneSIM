@@ -18,9 +18,7 @@ immuneSIM repertoire containing heavy/beta and light/alpha chain data.
 Generates a dataframe from separate heavy and light or beta and alpha chain dataframes
 }
 \examples{
-\dontrun{
-repertoire_heavy <- immuneSIM(number_of_seqs = 10,species = "mm",receptor = "ig", chain = "h")
-repertoire_light <- immuneSIM(number_of_seqs = 10,species = "mm",receptor = "ig", chain = "kl")
-combine_into_paired(repertoire_heavy,repertoire_light)
-}
+repertoire_heavy <- immuneSIM(number_of_seqs = 5,species = "mm",receptor = "ig", chain = "h")
+repertoire_light <- immuneSIM(number_of_seqs = 5,species = "mm",receptor = "ig", chain = "kl")
+paired_repertoire <- combine_into_paired(repertoire_heavy,repertoire_light)
 }
