@@ -29,4 +29,5 @@ Table of Contents
    somatic_hypermutation
    motif_implantation
    report_generation
+   acknowledgments
 

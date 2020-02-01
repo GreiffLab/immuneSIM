@@ -31,10 +31,18 @@ To be able to run the code, the following prerequisites are:
 Installing immuneSIM
 --------------------
 
-The package can be installed in R (via GitHub):
+The package can be installed in R (via CRAN or GitHub):
 
 1.  Check if all the prerequisites are fulfilled/installed.
 2.  Execute the following lines in R:
+
+.. code-block:: RST
+
+    #install the devtools package
+    install.packages("immuneSIM")
+
+
+Alternatively, installation via GitHub is possible in R:
 
 .. code-block:: RST
 
@@ -47,6 +55,7 @@ The package can be installed in R (via GitHub):
     
 
 
+
 Workflow of the quickstart simulation
 =========================================
 
@@ -56,6 +65,7 @@ The repertoires are simulated by :ref:`insilico`. Each repertoire will consist o
 annotated immune receptor sequences. 
 
 The user can generate pdfs summarizing the major features of the generated repertoire that includes: VDJ usage, positional amino acid frequency and gapped-k-mer occurrence.
+
 
 
 Performing the analysis
@@ -72,11 +82,13 @@ In the quickstart.R, we provide a simple example of murine B-cell repertoire gen
             number_of_seqs = 1000,
             species = "mm",
             receptor = "ig",
-            chain = "h")
+            chain = "h",
+            verbose= TRUE)
 
     save(sim_repertoire,file="sim_repertoire")
 
-    plot_report_repertoire(sim_repertoire)
+    #output plots on repertoire (Note: you need to specify output directory)
+    plot_report_repertoire(sim_repertoire, output_dir="my_directory/")
     
 
 

@@ -30,9 +30,10 @@ Generates pdf plots of full VDJ length distribution, positional amino acid frequ
 	sim_repertoire <- immuneSIM(number_of_seqs = 100, 
 						species = "mm", 
 						receptor = "ig", 
-						chain = "h")
+						chain = "h",
+						verbose = TRUE)
 
-    plot_report_repertoire(sim_repertoire)
+    plot_report_repertoire(sim_repertoire, output_dir = "my_directory/")
 
 
 Comparative
@@ -45,18 +46,22 @@ Outputs pdf plots comparing two repertoires chosen by the user with respect to *
 	repertoire_A <- immuneSIM(number_of_seqs = 100, 
 						species = "mm", 
 						receptor = "ig", 
-						chain = "h")
+						chain = "h",
+						verbose = TRUE)
 
 	repertoire_B <- immuneSIM(number_of_seqs = 100, 
 					species = "mm", 
 					receptor = "ig", 
-					chain = "h")					
+					chain = "h",
+					verbose = TRUE)					
 
+	#Note: you need to specify your output directory.
     plot_repertoire_A_vs_B(
     	repertoire_A, 
     	repertoire_B, 
     	names_repertoires = c("Sim_repertoire_1","Sim_repertoire_2"), 
-    	length_aa_plot = 14
+    	length_aa_plot = 14,
+    	output_dir = "my_directory/"
     	)
 
 

@@ -52,8 +52,16 @@ The user may decode this information using the following immuneSIM function whic
 	list_of_shm_event_dfs <- shm_event_reconstruction(sim_repertoire$shm_events)
 
 
+Note on SHM simulation
+-----------------------
 
+The integration of our previously published method provides an in-package method to create somatically hypermutated repertoires. If the user wishes to model aspects of SHM simulation not taken into account by AbSIM (Sheng et al., 2017 [3]_; Kirik et al., 2017 [4]_; Schramm and Douek, 2018 [5]_; Guo et al., 2019 [6]_), any immuneSIM repertoire can be used as input for any other SHM simulation methods (Hoehn et al., 2019 [7]_) that take AIRR standard repertoires as input.
 
 
 .. [1] Comparison of methods for phylogenetic B-cell lineage inference using time-resolved antibody repertoire simulations (AbSim), Yermanos et al., Bioinformatics, 33(24), 2017, https://academic.oup.com/bioinformatics/article/33/24/3938/4100159
 .. [2] Models of somatic hypermutation targeting and substitution based on synonymous mutations from high-throughput immunoglobulin sequencing data, Yaari et al., Frontiers in Immunology, 4, 2013, https://www.frontiersin.org/articles/10.3389/fimmu.2013.00358/full
+.. [3] Gene-Specific Substitution Profiles Describe the Types and Frequencies of Amino Acid Changes during Antibody Somatic Hypermutation., Sheng et al., Frontiers in Immunology, 8, 2017, https://www.frontiersin.org/articles/10.3389/fimmu.2017.00537/full
+.. [4] Antibody Heavy Chain Variable Domains of Different Germline Gene Origins Diversify through Different Paths., Kirik et al., Frontiers in Immunology, 8, 2017, https://www.frontiersin.org/articles/10.3389/fimmu.2017.01433/full
+.. [5] Beyond Hot Spots: Biases in Antibody Somatic Hypermutation and Implications for Vaccine Design, Schramm and Douek, Frontiers in Immunology, 9, 2018, https://www.frontiersin.org/articles/10.3389/fimmu.2018.01876/full
+.. [6] cAb-Rep: A Database of Curated Antibody Repertoires for Exploring Antibody Diversity and Predicting Antibody Prevalence, Guo et al., 9, 2019, https://www.frontiersin.org/articles/10.3389/fimmu.2019.02365/full
+.. [7] Repertoire-wide phylogenetic models of B cell molecular evolution reveal evolutionary signatures of aging and vaccination, Hoehn et al., Proc. Natl. Acad. Sci., 116, 2019, https://www.pnas.org/content/116/45/22664

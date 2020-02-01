@@ -50,7 +50,7 @@ introduce additional biases in the repertoire through :ref:`post_sim_mod`. Final
                          freq_update_time = round(0.5*number_of_sequences),
                          max_cdr3_length = 100,
                          min_cdr3_length = 6,
-                         print_progress = TRUE,
+                         verbose = TRUE,
                          airr_compliant = TRUE)
 
     save(mm_igh_sim,file="mm_igh_sim")
@@ -73,6 +73,21 @@ VDJ Recombination includes
 *   sampling insertions and deletions (:ref:`parameter_insdel`)
 *	sampling SHM profile (:ref:`parameter_shm`)
 *	introducing signals (:ref:`parameter_motif`)
+
+
+Output format
+--------------
+
+The immuneSIM function outputs an R dataframe containing 20 columns and rows equal to the number of sequences simulated. Per sequence immuneSIM provides the following information:
+* Full VDJ sequence (nucleotide and amino acid): sequence, sequence_aa          
+* CDR3 junctional sequence (nt and aa): junction, junction_aa         
+* VDJ genes used in the recombination event: v_call, d_call, j_call             
+* Nucleotide insertions VD and DJ: np1, np2 
+* Length of deletion in V, D and J genes: del_v, del_d_5, del_d_3, del_j               
+* CDR3 subsequences from V,D and J genes: v_sequence_alignment, d_sequence_alignment, j_sequence_alignment 
+* Clonal frequency/count information: freqs, counts              
+* Summary of SHM event simulated: shm_events           
+* Given name of repertoire: name_repertoire   
 
 
 

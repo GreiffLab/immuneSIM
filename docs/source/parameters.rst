@@ -129,7 +129,8 @@ identified via a combination of four IDs (species-->receptor-->chain-->gene). Fo
 			vdj_list = list_germline_genes_allele_01_new,
 			species = "synth", 
 			receptor = "ig", 
-			chain = "h")
+			chain = "h",
+			verbose=TRUE)
 
 
 
@@ -200,7 +201,8 @@ can serve as the most basic "negative control".
 
 	random_repertoire <- immuneSIM(number_of_seqs = 10,
 	                     name_repertoire = "random",
-	                     random = TRUE
+	                     random = TRUE,
+	                	 verbose = TRUE
 	                     )
 
 
