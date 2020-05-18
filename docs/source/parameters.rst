@@ -17,11 +17,13 @@ ImmuneSIM allows the users to control the following parameters:
 *   :ref:`parameter_VDJ`
 *   :ref:`parameter_insdel`
 *   :ref:`parameter_shm`
-*   :ref:`parameter_motif`
 *   :ref:`parameter_freq`
+*   :ref:`parameter_random`
+*   :ref:`parameter_motif`
 *   :ref:`parameter_similarity`
 *   :ref:`parameter_codonbias`
-*   :ref:`parameter_random`
+
+
 
 
 
@@ -237,7 +239,7 @@ Example: Implanting 2 (n) different motifs of length 3 (k), each in 10 percent o
 Parameter 11: Sequence similarity
 ==================================
 
-Constructs a similarity network for the CDR3 amino acid sequences and deletes the top X percent hub sequences (Default: 0.5 percent) thus impacting the network architecture. Here hubs are deleted from a simulated repertoire, however this function can be used on any AIRR-compliant repertoire. If the option ``report = TRUE`` is set the excluded sequences will be saved as in the current directory as a .csv file 
+Constructs a similarity network for the CDR3 amino acid sequences and deletes the top X percent hub sequences (Default: 0.5 percent) thus impacting the network architecture [5]_. Here hubs are deleted from a simulated repertoire, however this function can be used on any AIRR-compliant repertoire. If the option ``report = TRUE`` is set the excluded sequences will be saved as in the current directory as a .csv file 
 
 .. code-block:: r
 
@@ -308,17 +310,17 @@ The following table summarizes the reference datasets for the germline gene freq
    * - mus musculus (mm)
      - TRB
      - SRR1339480_Untreated
-     - Madi, 2017 [5]_
+     - Madi, 2017 [6]_
      - 17'752
    * - homo sapiens (hs)
      - IGH
      - dewitt_plos_D1_Na
-     - DeWitt, 2016 [6]_
+     - DeWitt, 2016 [7]_
      - 2'557'564
    * - homo sapiens (hs)
      - TRB
      - HIP19048
-     - Emerson, 2017 [7]_
+     - Emerson, 2017 [8]_
      - 52'200
    * - homo sapiens (hs)
      - IGK/L
@@ -345,6 +347,7 @@ The following table summarizes the reference datasets for the germline gene freq
 .. [2] https://stackoverflow.com/questions/19343133/setting-upper-and-lower-limits-in-rnorm
 .. [3] Greiff, Victor, Systems Analysis Reveals High Genetic and Antigen-Driven Predetermination of Antibody Repertoires throughout B Cell Development. Cell Reports, 19(7), 1467-1478 (2017).
 .. [4] Yermanos, Alexander, Comparison of methods for phylogenetic B-cell lineage inference using time-resolved antibody repertoire simulations (AbSim). Bioinformatics, 33(24), 3938–3946 (2017).
-.. [5] Madi A., T cell receptor repertoires of mice and humans are clustered in similarity networks around conserved public CDR3 sequences, eLife, 6 (2017)
-.. [6] DeWitt, William S., A public database of memory and naive B-cell receptor sequences, PLOS One, 11(8) (2016).
-.. [7] Emerson, Ryan O., Immunosequencing identifies signatures of cytomegalovirus exposure history and HLA-mediated effects on the T cell repertoire, Nature Genetics, 49(5), 659-665 (2017)
+.. [5] Miho, Enkelejda, Large-scale network analysis reveals the sequence space architecture of antibody repertoires. Nature Communications, 10, 1321 (2019).
+.. [6] Madi A., T cell receptor repertoires of mice and humans are clustered in similarity networks around conserved public CDR3 sequences, eLife, 6 (2017).
+.. [7] DeWitt, William S., A public database of memory and naive B-cell receptor sequences, PLOS One, 11(8) (2016).
+.. [8] Emerson, Ryan O., Immunosequencing identifies signatures of cytomegalovirus exposure history and HLA-mediated effects on the T cell repertoire, Nature Genetics, 49(5), 659-665 (2017).
