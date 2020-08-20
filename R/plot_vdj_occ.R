@@ -34,7 +34,7 @@
 
     #in case of J allow for 'random' J gene (used for a particular case)
     if(unique(vdj_occurrence_plot_df$gene)[i]=="J"){
-      curr_vdj_occurrence_plot_df$Var1 <- factor(curr_vdj_occurrence_plot_df$Var1,levels=c("IGHJ1","IGHJ2","IGHJ3","IGHJ4","IGHJrandom"))
+      curr_vdj_occurrence_plot_df$Var1 <- factor(curr_vdj_occurrence_plot_df$Var1,levels=c(levels(occurrence_j$Var1),"IGHJrandom"))
     }
 
     curr_vdj_occurrence_plot_df$Var1<-factor(curr_vdj_occurrence_plot_df$Var1,levels=list_order_genes[[unique(vdj_occurrence_plot_df$gene)[i]]])

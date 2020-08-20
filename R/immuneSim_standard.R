@@ -49,28 +49,82 @@
   #depending on the germline genes the patterns that signify a shift can can look different
   #below we assign checks for these cases.
   #identified common frameshifts (imgt). if these occur avoid them --> extend cdr3 search
-  if(species=="hs" & receptor=="ig"){
+  if(species=="hs" & receptor=="ig"& chain=="h"){
     common_frameshifts<-c("WTS","LTT","LMS","STP","RSL","**")#,"SST","SIS","GTT","VTT","TTT","RTT","MTT","PTT","GCL","STT")
     check_within_cdr3<-c("LTT","LMS") #GCL  MTT  WTT  TTT  RTT  PTT  SIS  VTT  SST  GTT RSL  STP
-    jct_correction<-c("DYW","DSW","FDSW","DVW","DLW","QHW","FDYW","YFDYW","YFDLW","AFDVW","DFDYW","YYFDYW","YYYYYGMDVW","YYYYGMDVW")
-  }else if(species=="mm" & receptor=="ig"){
+    #jct_correction<-c("DYW","DSW","FDSW","DVW","DLW","QHW","FDYW","YFDYW","YFDLW","AFDVW","DFDYW","YYFDYW","YYYYYGMDVW","YYYYGMDVW")
+    anchor_beg_j<-c("GQGTLVTVSS","GRGTLVTVSS","GQGTMVTVSS","GQGTTVTVSS")
+
+  }else if(species=="mm" & receptor=="ig" & chain=="h"){
     common_frameshifts<-c("WTT","LLT","WLT","GLT","**")#,"CLL","VLT","TLT","RLT","SLT","PLT")
     check_within_cdr3<-c("LLT","GLT")
-    jct_correction<-c("DFDYW","WYFDVW","DYYAMDYW","YYAMDYW","YWYFDVW","WFAYW","YFDYW","FDYW","YAMDYW","FAYW","YFDVW","DVW","AYW","DYW")
-  }else if(species=="hs" & receptor=="tr"){
+    anchor_beg_j<-c("GAGTTVTVSS","GQGTTLTVSS","GQGTLVTVSA","GQGTSVTVSS")
+    #jct_correction<-c("DFDYW","WYFDVW","DYYAMDYW","YYAMDYW","YWYFDVW","WFAYW","YFDYW","FDYW","YAMDYW","FAYW","YFDVW","DVW","AYW","DYW")
+  }else if(species=="hs" & receptor=="tr"& chain=="b"){
     common_frameshifts<-c("AVF","LHL","HIF","PST","FST","SFL","**") # GFL  AST  TVF PPL  PDF  NCF
     check_within_cdr3<-c("AVF", "LHL","PST","HIF", "SFL","FST")#  PDF  SFL  HIF  PST  LHL   )
-    jct_correction<-c("YNEQFF","EQYF","NEQFF","YEQYF","SYNEQFF","SYEQYF","F")
-  }else if(species=="mm" & receptor=="tr"){
+    anchor_beg_j<- c("GQGTRLTVV","GSGTRLTVV","GEGSWLTVV","GSGTQLSVL","GDGTRLSIL","GNGTRLTVT","GPGTRLTVL","GEGSRLTVL","GRLGGGLLVL","GAGTRLSVL","GPGTRLLVL","GAGSRLTVL","GPGTRLTVT")
+    #jct_correction<-c("YNEQFF","EQYF","NEQFF","YEQYF","SYNEQFF","SYEQYF","F")
+  }else if(species=="mm" & receptor=="tr"& chain=="b"){
     common_frameshifts<-c("AVF","LVL","PVL","ALF","IIF","**")
     check_within_cdr3<-"\\*\\*"
+    anchor_beg_j<- c("GKGTRLTVV","GSGTRLLVI","GEGSRLIVV","GHGTKLSVL","GEGTRLSVL","AAGTRLTVT","GLGKELRYK","GPGTRLTVL","GEGSKLTVL","GSGTRLTVL","GAGTRLSVL","GPGTRLLVL")
     #common_frameshifts<-c("")
     #check_within_cdr3<-c("AVF","TVL","ALF","IIF")
-    jct_correction<-c("QNTLYF","GSYEQYF","TEVFF","YAEQFF","DTQYF","EQYF","NYAEQFF","SYEQYF","YEQYF","F")
+    #jct_correction<-c("QNTLYF","GSYEQYF","TEVFF","YAEQFF","DTQYF","EQYF","NYAEQFF","SYEQYF","YEQYF","F")
+  }else if(species=="hs" & receptor=="ig"& chain =="k"){
+    common_frameshifts<-c("**") #"AVF","LVL","PVL","ALF","IIF",
+    check_within_cdr3<-"\\*\\*"
+    anchor_beg_j<- c("GQGTKVEIK","GQGTKLEIK","GPGTKVDIK","GGGTKVEIK","GQGTRLEIK")
+  }else if(species=="hs" & receptor=="ig"& chain =="l"){
+    common_frameshifts<-c("**") #"AVF","LVL","PVL","ALF","IIF",
+    check_within_cdr3<-"\\*\\*"
+    anchor_beg_j<- c("GTGTKVTVL","GGGTKLTVL","GGGTQLIIL","GEGTELTVL","GSGTKVTVL","GGGTQLTVL")
+  }else if(species=="mm" & receptor=="ig" & chain =="k"){
+    common_frameshifts<-c("**") #"AVF","LVL","PVL","ALF","IIF",
+    check_within_cdr3<-"\\*\\*"
+    anchor_beg_j<- c("GGGTKLEIK","SDGTRLEIK","GSGTKLEIK","GAGTKLELK")
+  }else if(species=="mm" & receptor=="ig" & chain =="l"){
+    common_frameshifts<-c("**") #"AVF","LVL","PVL","ALF","IIF",
+    check_within_cdr3<-"\\*\\*"
+    anchor_beg_j<- c("GGGTKLTVL","GGGTKVTVL","GSGTKVTVL","SSNGLLYAG","GGGTRLTVLD")
+  }else if(species=="hs" & receptor=="tr" & chain=="a"){
+    common_frameshifts<-c("**")
+    check_within_cdr3<-"\\*\\*"
+    anchor_beg_j<- c("GKGTRVSTSP", "GTGTQLKVEL", "GKGTMLLVSP", "GSGTRLLVRP", "GIGTKLQVIP",
+                     "GTGTKLQVIP", "GSGTRLSVKP", "GKGTTLSVSS", "GKGTHLSVSS", "ARGTMLKVDL",
+                     "GGGTRVLVKP", "GRGTQLTVWP", "GKGSKHNVTP", "GKGTHVFIIS", "GAGTTVTVRA",
+                     "GSGTKLNVKP", "GSGTQLTVLP", "GQGTELSVKP", "GAGTQVVVTP", "GKGTRLLVKP",
+                     "GPGTRLSVLP", "GDGTTLTVKP", "GKGTKLSVIP", "GKGTRLSVIA", "GSGTRLSIRP",
+                     "GKGTRLHILP", "GDGTQLVVKP", "GTGTLLAVQP", "GAGTKLIIKP", "GTGTRLQVFP",
+                     "GSGTQVIVLP", "GTGTRLTVIP", "GQGTTLQVKP", "GLGTSLAVNP", "GGGTRLMVKP",
+                     "GAGTRLAVHP", "GTGTRLKVLA", "GKGTSLLVTP", "GKGTKLSVKP", "GAGTRLTVKP",
+                     "GTGTRLQVTL", "GKGTHLIIQP", "GTGTRLAVRP", "GAGTILRVKS", "GTGTRLTIIP",
+                     "GTGTSLTVIP", "GSGTRLQVQP", "GPGTSLSVIP", "GQGTILTVHP", "GKGTLLTVNP",
+                     "GQGTRLTINP", "GKGMSTKINP", "GKGITLSVRP", "GKGTKLTVNP", "GEGTQLTVNP",
+                     "GMGTQVRVKL", "GRGTSLIVHP", "GKGTELIVSL", "GANTRGIMKL", "GKGNQVVVIP",
+                     "GTGTRLLVSP", "GAGTRLFVKA")
+  }else if(species=="mm" & receptor=="tr" & chain=="a"){
+    common_frameshifts<-c("**")
+    check_within_cdr3<-"\\*\\*"
+    anchor_beg_j<- c("GKGTVLLVSP", "GSGTRLLVSP", "GTGTKLQVVP", "GTGTTVSVSP", "GQGTILKVYL",
+                     "GIGTRVLVRP", "GAGTQLIVIP", "GIESKHNVSP", "GEGTQVTVIS", "GVESVTMMSVRA",
+                     "GSGTKLTVEP", "GSGSKLTVEP", "GSGTQLTVMP", "GQGTKLSIKP", "GTGTQVVVTP",
+                     "GTWRRLLVKP", "GLGTRVSVFP", "GDGTVLTVKP", "GKGTKFSLIP", "GREARLSMIE",
+                     "GAETKLRNPP", "GKGTHLHVLP", "GDGTQLVVKP", "FGDGTQLVVKP", "GIGTLLSVKP",
+                     "GTGTLLSVKP", "GSGTKLIIKP", "TGTRLQVSP", "GTGTRLQVLP", "GSGTKVIPCLP",
+                     "GSGTKVIVLP", "GTRTRLTIIP", "GLGTTLQVQP", "GLGTSLVVNP", "GGGTRLTVRP",
+                     "GAGTRLLCAH", "GAGTRLAVCP", "GAGTRLKVIA", "APHYWSHP", "GKGTKLSVKS",
+                     "GAGTKLSVKP", "GAGTKLTVKP", "GAGTRLQVNL", "GKGTQLIIQP", "GKGTQLII",
+                     "GDGDELGVST", "GLGTILRVRP", "GAGTKLTIKP", "GKGTSLTVIPS", "GRGTRLQVYA",
+                     "GQGTSLSVVP", "GHGTILRVHP", "GKGTLLTVTP", "GQGTVLSVIP", "GAMTGRLMKLS",
+                     "GEGTKLTVSS", "FGKGAKLTVSP", "ATGGYEAEED", "GKGTSLVVHP", "GKGTQVVVLP",
+                     "GTGTSLLVDP")
   }else{
     common_frameshifts<-c("")
     check_within_cdr3<-"\\*\\*"
-    jct_correction <- c("")
+    anchor_beg_j <- c("")
+    #jct_correction <- c("")
   }
 
   count<-number_of_simulated_seqs
@@ -302,22 +356,29 @@
           cdr3_to_end<-base::substr(curr_seq_nt,locations_beg[[1]][1,"start"],nchar(curr_seq_nt))
           cdr3_to_end_aa<-base::substr(curr_seq,(locations_beg_aa[[1]][1,"start"]),nchar(curr_seq))
 
-          res <- sapply(1:length(anchor_end),function(x) stringr::str_match(cdr3_to_end_aa, paste(base::substr(cdr3_to_end_aa,1,3),"(.*?)",anchor_end[x],sep="")))[1,]
-          cdr3_found_aa<-res[!is.na(res)][1]
+          #res <- sapply(1:length(anchor_end),function(x) stringr::str_match(cdr3_to_end_aa, paste(base::substr(cdr3_to_end_aa,1,3),"(.*?)",anchor_end[x],sep="")))[1,]
+          #cdr3_found_aa<-res[!is.na(res)][1]
+
+          res <- sapply(1:length(anchor_beg_j),function(x) stringr::str_match(cdr3_to_end_aa, paste(base::substr(cdr3_to_end_aa,1,3),"(.*?)", anchor_beg_j[x],sep="")))[1,]
+          found_ending<-anchor_beg_j[!is.na(res)]
+
+          cdr3_found_aa<-base::strsplit(cdr3_to_end_aa, found_ending)[[1]][1]
+
+
 
           #NEW: correct cdr3 if it ends to early
           #get seq from end of curr cdr3 to end of VDJ
-          end_cdr3_to_end_aa<-base::strsplit(cdr3_to_end_aa,cdr3_found_aa)[[1]][2]
+          #nd_cdr3_to_end_aa<-base::strsplit(cdr3_to_end_aa,cdr3_found_aa)[[1]][2]
           #evaluate whether/which jct correction is needed
-          find_jct_correction<-sapply(1:length(jct_correction),function(x) base::substr(end_cdr3_to_end_aa,1,nchar(jct_correction[x]))==jct_correction[x])
-          add_jct_corr<-jct_correction[find_jct_correction]
+          #ind_jct_correction<-sapply(1:length(jct_correction),function(x) base::substr(end_cdr3_to_end_aa,1,nchar(jct_correction[x]))==jct_correction[x])
+          #dd_jct_corr<-jct_correction[find_jct_correction]
           #if several possibilities choose the longest match (best correction)
-          if(length(add_jct_corr)>1){
-            corr_ordered_by_length<-add_jct_corr[order(nchar(add_jct_corr), add_jct_corr)]
-            add_jct_corr<-corr_ordered_by_length[length(corr_ordered_by_length)]
-          }
+          #f(length(add_jct_corr)>1){
+          # corr_ordered_by_length<-add_jct_corr[order(nchar(add_jct_corr), add_jct_corr)]
+          # add_jct_corr<-corr_ordered_by_length[length(corr_ordered_by_length)]
+          #
           #paste together previous cdr3 with correction
-          cdr3_found_aa<-paste(cdr3_found_aa,add_jct_corr,sep="")
+          #dr3_found_aa<-paste(cdr3_found_aa,add_jct_corr,sep="")
 
           #based on found aa get nt cdr3 seq
           cdr3_found_nt<-base::substr(cdr3_to_end,1,nchar(cdr3_found_aa)*3)
