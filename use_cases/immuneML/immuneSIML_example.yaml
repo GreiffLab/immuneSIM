@@ -3,7 +3,8 @@ definitions:
     immuneSIMdata:
       format: AIRR
       params:
-        metadata_file: metadata.csv
+        path: ./immuneSIML/test/data/
+        metadata_file: ./immuneSIML/test/data/metadata.csv
   encodings:
     encoding_1:
       KmerFrequency:
