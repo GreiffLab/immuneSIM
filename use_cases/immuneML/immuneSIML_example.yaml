@@ -1,11 +1,9 @@
 definitions:
   datasets:
-    d1:
-      format: Pickle
+    immuneSIMdata:
+      format: AIRR
       params:
-        metadata_file: dataset_metadata.csv
-        path: dataset.iml_dataset
-        result_path: dataset_18257_files/d1
+        metadata_file: metadata.csv
   encodings:
     encoding_1:
       KmerFrequency:
