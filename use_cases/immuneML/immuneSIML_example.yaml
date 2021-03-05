@@ -1,0 +1,123 @@
+definitions:
+  datasets:
+    d1:
+      format: Pickle
+      params:
+        metadata_file: dataset_metadata.csv
+        path: dataset.iml_dataset
+        result_path: dataset_18257_files/d1
+  encodings:
+    encoding_1:
+      KmerFrequency:
+        k: 2
+        reads: unique
+        sequence_encoding: CONTINUOUS_KMER
+  ml_methods:
+    k_nearest_neighbors:
+      KNN:
+        n_neighbors:
+        - 3
+        - 5
+        - 7
+        show_warnings: false
+      model_selection_cv: true
+      model_selection_n_folds: 5
+    logistic_regression:
+      LogisticRegression:
+        C:
+        - 0.01
+        - 0.1
+        - 1
+        - 10
+        - 100
+        class_weight:
+        - balanced
+        penalty:
+        - l1
+        show_warnings: false
+      model_selection_cv: true
+      model_selection_n_folds: 5
+    random_forest:
+      RandomForestClassifier:
+        class_weight:
+        - balanced
+        n_estimators:
+        - 10
+        - 50
+        - 100
+        show_warnings: false
+      model_selection_cv: true
+      model_selection_n_folds: 5
+    support_vector_machine:
+      SVM:
+        C:
+        - 0.01
+        - 0.1
+        - 1
+        - 10
+        - 100
+        class_weight:
+        - balanced
+        penalty:
+        - l1
+        show_warnings: false
+      model_selection_cv: true
+      model_selection_n_folds: 5
+  motifs: {}
+  preprocessing_sequences: {}
+  reports:
+    benchmark:
+      MLSettingsPerformance:
+        name: benchmark
+        single_axis_labels: false
+        x_label_position: -0.12
+        y_label_position: -0.08
+    coefficients:
+      Coefficients:
+        coefs_to_plot:
+        - N_LARGEST
+        n_largest:
+        - 25
+        name: coefficients
+  signals: {}
+  simulations: {}
+instructions:
+  inst1:
+    assessment:
+      reports:
+        models:
+        - coefficients
+      split_count: 5
+      split_strategy: random
+      training_percentage: 0.7
+    dataset: d1
+    labels:
+    - label
+    metrics: []
+    number_of_processes: 10
+    optimization_metric: accuracy
+    refit_optimal_model: true
+    reports:
+    - benchmark
+    selection:
+      split_count: 1
+      split_strategy: random
+      training_percentage: 0.7
+    settings:
+    - encoding: encoding_1
+      ml_method: random_forest
+      preprocessing: null
+    - encoding: encoding_1
+      ml_method: logistic_regression
+      preprocessing: null
+    - encoding: encoding_1
+      ml_method: support_vector_machine
+      preprocessing: null
+    - encoding: encoding_1
+      ml_method: k_nearest_neighbors
+      preprocessing: null
+    store_encoded_data: false
+    strategy: GridSearch
+    type: TrainMLModel
+output:
+  format: HTML
