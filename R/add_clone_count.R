@@ -12,21 +12,11 @@
 
   if(equal_cc==FALSE){
     #set parameters
-    xmin<-1
-    alpha_value<-user_defined_alpha
-    number_of_simulated_seqs<-length(simulated_repertoire[,1])#
-
-    #number of entries required
-    x<-xmin:number_of_simulated_seqs #CDR3 rank (= 100 unique CDR3s)#
-
-    #get powerlaw distribution
-    freq_counts<-poweRlaw::dpldis(x,xmin,alpha_value)
-    freq_counts <- freq_counts*(1/sum(freq_counts))
-    #randomize order of frequencies
-    simulated_repertoire$freqs<-sample(freq_counts)
-
-    #calculate counts (rounded from frequency distribution)
-    simulated_repertoire$counts <-  round(freq_counts*(max(freq_counts)/min(freq_counts))/max(freq_counts))
+    xmin <- 1
+    number_of_simulated_seqs <- length(simulated_repertoire[,1])
+    
+    #simulate counts from a powerlaw distribution
+    simulated_repertoire$counts <-  poweRlaw::rpldis(number_of_simulated_seqs, xmin, user_defined_alpha)
     #recalculate frequencies from rounded counts
     simulated_repertoire$freqs <-  simulated_repertoire$counts/sum(simulated_repertoire$counts)
 
